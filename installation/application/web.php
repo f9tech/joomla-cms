@@ -25,8 +25,31 @@ final class InstallationApplicationWeb extends JApplicationCms
 	 */
 	public function __construct()
 	{
-		// Run the parent constructor
-		parent::__construct();
+
+		/**
+		 * $input and $config would normally be created
+		 * 	by the grandparent class constructor, JApplicationWeb
+		 * However due to a bug how Joomla tries to store sessions
+		 * by default, we need to create them here
+		 **/
+		$input = new JInput;
+
+		$config = new JRegistry;
+
+		/**
+		 * Now we configure the installer to use
+		 * memcached to save session data
+		 *
+		 **/
+
+		$config->set('session_handler','memcached');
+
+
+		/**
+		 * Run the parent constructor and use the
+		 * input and config objects we created
+		 **/
+		parent::__construct($input, $config);
 
 		// Load and set the dispatcher
 		$this->loadDispatcher();
@@ -36,6 +59,7 @@ final class InstallationApplicationWeb extends JApplicationCms
 		{
 			$this->config->set('session', true);
 		}
+
 
 		// Set the session default name.
 		if (is_null($this->config->get('session_name')))
