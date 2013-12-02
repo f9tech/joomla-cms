@@ -5,5 +5,46 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: .*
-  script: main.php
+
+- url: /media/(.*\.(ico$|jpg$|png$|gif$))
+  static_files: media/\1
+  upload: media/(.*\.(ico$|jpg$|png$|gif$))
+  application_readable: true
+
+- url: /media/(.*\.(ico$|jpg$|png$|gif$))
+  static_files: media/\1
+  upload: media/(.*\.(ico$|jpg$|png$|gif$))
+  application_readable: true
+
+- url: /templates/(.*\.(ico$|jpg$|png$|gif$))
+  static_files: templates/\1
+  upload: templates/(.*\.(ico$|jpg$|png$|gif$))
+  application_readable: true
+
+- url: /templates/(.*\.(ico$|jpg$|png$|gif$))
+  static_files: templates/\1
+  upload: templates/(.*\.(ico$|jpg$|png$|gif$))
+  application_readable: true
+
+- url: /administrator(.+)
+  script: administrator/\1
+  secure: always
+
+- url: /administrator/
+  script: administrator/index.php
+  secure: always
+
+- url: /installation/
+  script: installation/index.php
+  secure: always
+
+- url: /installation(.+)
+  script: installation/\1
+  secure: always
+
+- url: /info.php
+  script: info.php
+  secure: always
+
+- url: /(.+)?/?
+  script: index.php
