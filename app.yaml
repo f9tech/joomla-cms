@@ -1,15 +1,19 @@
 application: overnumerousness-site
-version: setup-joomla-3
+version: setup-joomla-4
 runtime: php
 api_version: 1
 threadsafe: true
 
-handlers:
 
-- url: /(.*\.(xml$))
-  static_files: /\1
-  upload: /(.*\.(xml$))
-  application_readable: true
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+
+
+handlers:
 
 - url: /media/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
   static_files: media/\1
