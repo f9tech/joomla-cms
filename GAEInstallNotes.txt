@@ -220,24 +220,43 @@ Ok, so now we need some handlers for PHP scripts:
 - url: /installation/(.+)
   script: installation/\1
   secure: always
+  login: admin
 
 - url: /installation/
   script: installation/index.php
   secure: always
+  login: admin
 
 - url: /administrator/(.+)
   script: administrator/\1
   secure: always
+  login: admin
 
 - url: /administrator/
   script: administrator/index.php
   secure: always
+  login: admin
+
+- url: /info.php
+  script: info.php
+  secure: always
+  login: admin
 
 - url: /(.+)?/?
   script: index.php
 
 
-These lines should, if I've read everything correctly, force the index.php file to be used for all requests.  As an exception, requests going to the administrator or installation directories will instead use the index.php file IN those directories.  I've also configured things so that accessing those directories on app engine will always be done via HTTPS
+These lines should, if I've read everything correctly, force the index.php file to be used for all requests with a few exceptions.  Those exceptions are:
+Any request starting with installation will be processed using installation/index.php
+
+Any request starting with administrator will be processed using administrator/index.php
+
+Any request for info.php will be processed using info.php - a small php file I use for testing and displaying PHP config info.
+
+For added security, the option secure: always means that those urls can only be accessed via HTTPS, any attempt to go to http://mydomain.com/info.php will be redirected
+
+And even more security, the option login: admin means that only people who are logged on with a Google userid[either gmail or any valid Google Apps for Business user] can acces those connections.  Moreover, by setting it to "admin" I must explicitly grant them admin authority for them to reach that url.  Note: this does not mean they will be able to configure Joomla and it's components.  They won't even be logged in to Joomla!  This just forces them to be logged in to Google Apps and have been given access before they can make changes to my installation of Joomla!
+
 
 Delete main.php
 

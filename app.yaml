@@ -1,55 +1,64 @@
 application: overnumerousness-site
-version: setup-joomla-2
+version: setup-joomla-3
 runtime: php
 api_version: 1
 threadsafe: true
 
 handlers:
 
+- url: /(.*\.(xml$))
+  static_files: /\1
+  upload: /(.*\.(xml$))
+  application_readable: true
+
 - url: /media/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
   static_files: media/\1
   upload: /media/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
-  application_readable: true
+  application_readable: false
 
 - url: /templates/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
   static_files: templates/\1
   upload: templates/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
-  application_readable: true
+  application_readable: false
 
 - url: /administrator/templates/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
   static_files: administrator/templates/\1
   upload: administrator/templates/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
-  application_readable: true
+  application_readable: false
   secure: always
 
 - url: /installation/template/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
   static_files: installation/template/\1
   upload: installation/template/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
-  application_readable: true
+  application_readable: false
   secure: always
 
 
 - url: /installation/(.+)
   script: installation/\1
   secure: always
+  login: admin
 
 
 - url: /installation/
   script: installation/index.php
   secure: always
+  login: admin
 
 - url: /administrator/(.+)
   script: administrator/\1
   secure: always
+  login: admin
 
 - url: /administrator/
   script: administrator/index.php
   secure: always
-
-- url: /(.+)?/?
-  script: index.php
+  login: admin
 
 - url: /info.php
   script: info.php
   secure: always
+  login: admin
 
+- url: /(.+)?/?
+  script: index.php
