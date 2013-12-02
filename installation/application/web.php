@@ -38,12 +38,11 @@ final class InstallationApplicationWeb extends JApplicationCms
 
 		/**
 		 * Now we configure the installer to use
-		 * memcached to save session data
+		 * gae memcached to save session data
 		 *
 		 **/
 
-		$config->set('session_handler','memcached');
-
+		$config->set('session_handler','gaememcached');
 
 		/**
 		 * Run the parent constructor and use the

@@ -6,27 +6,39 @@ threadsafe: true
 
 handlers:
 
-- url: /media/(.*\.(ico$|jpg$|png$|gif$))
+- url: /media/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
   static_files: media/\1
-  upload: media/(.*\.(ico$|jpg$|png$|gif$))
+  upload: /media/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
   application_readable: true
 
-- url: /media/(.*\.(ico$|jpg$|png$|gif$))
-  static_files: media/\1
-  upload: media/(.*\.(ico$|jpg$|png$|gif$))
-  application_readable: true
-
-- url: /templates/(.*\.(ico$|jpg$|png$|gif$))
+- url: /templates/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
   static_files: templates/\1
-  upload: templates/(.*\.(ico$|jpg$|png$|gif$))
+  upload: templates/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
   application_readable: true
 
-- url: /templates/(.*\.(ico$|jpg$|png$|gif$))
-  static_files: templates/\1
-  upload: templates/(.*\.(ico$|jpg$|png$|gif$))
+- url: /administrator/templates/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
+  static_files: administrator/templates/\1
+  upload: administrator/templates/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
   application_readable: true
+  secure: always
 
-- url: /administrator(.+)
+- url: /installation/template/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
+  static_files: installation/template/\1
+  upload: installation/template/(.*\.(css$|js$|ico$|jpg$|png$|gif$))
+  application_readable: true
+  secure: always
+
+
+- url: /installation/(.+)
+  script: installation/\1
+  secure: always
+
+
+- url: /installation/
+  script: installation/index.php
+  secure: always
+
+- url: /administrator/(.+)
   script: administrator/\1
   secure: always
 
@@ -34,17 +46,21 @@ handlers:
   script: administrator/index.php
   secure: always
 
-- url: /installation/
-  script: installation/index.php
+- url: /(.+)?/?
+  script: index.php
+
+
+- url: /test.php
+  script: test.php
   secure: always
 
-- url: /installation(.+)
-  script: installation/\1
+- url: /test2.php
+  script: test2.php
   secure: always
+
+
 
 - url: /info.php
   script: info.php
   secure: always
 
-- url: /(.+)?/?
-  script: index.php
