@@ -1,9 +1,14 @@
 application: overnumerousness-site
-version: setup
+version: setup-1
 runtime: php
 api_version: 1
 threadsafe: true
 
 handlers:
+
+- url: /info.php
+  script: info.php
+  secure: always
+
 - url: .*
   script: main.php
