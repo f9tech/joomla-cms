@@ -49,17 +49,6 @@ handlers:
 - url: /(.+)?/?
   script: index.php
 
-
-- url: /test.php
-  script: test.php
-  secure: always
-
-- url: /test2.php
-  script: test2.php
-  secure: always
-
-
-
 - url: /info.php
   script: info.php
   secure: always
