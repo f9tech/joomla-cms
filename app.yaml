@@ -1,5 +1,5 @@
 application: overnumerousness-site
-version: setup
+version: setup-joomla-1
 runtime: php
 api_version: 1
 threadsafe: true
