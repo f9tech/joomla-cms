@@ -1,0 +1,9 @@
+application: overnumerousness-site
+version: setup
+runtime: php
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: .*
+  script: main.php
